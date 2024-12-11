@@ -23,7 +23,9 @@
     </header>
 
     <section id="services">
-      <div class="card-container container" id="card-component"></div>
+      <div class="container">
+        <CardService />
+      </div>
     </section>
 
     <section class="bg-black container" id="about">
@@ -117,7 +119,9 @@
   </div>
 </template>
 
-<script lang="ts"></script>
+<script setup lang="ts">
+import CardService from "@/components/CardService.vue";
+</script>
 
 <style scoped>
 @import "@/assets/css/home.css";
