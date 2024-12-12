@@ -1,23 +1,25 @@
 <template>
-  <div class="card" v-for="service in services" :key="service">
-    <a href="#">
-      <div class="card-img">
-        <img :src="service.fotos" alt="" />
-      </div>
+  <div class="card-container">
+    <div class="card" v-for="service in services" :key="service.nome">
+      <a href="#">
+        <div class="card-img">
+          <img :src="service.fotos" alt="" />
+        </div>
 
-      <div class="card-content">
-        <h2>{{ service.nome }}</h2>
-        <p>{{ service.descricao }}</p>
-      </div>
-    </a>
+        <div class="card-content">
+          <h2>{{ service.nome }}</h2>
+          <p>{{ service.descricao }}</p>
+        </div>
+      </a>
+    </div>
   </div>
 </template>
 
 <script setup lang="ts">
-import serviceData from "@/core/mock/service.json";
-import { ref } from "vue";
+import serviceData from "@/core/mock/service.json"
+import { ref } from "vue"
 
-const services = ref(serviceData);
+const services = ref(serviceData)
 </script>
 
 <style scoped>

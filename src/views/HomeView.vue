@@ -61,7 +61,10 @@
             <p>
               <b>Rua Barbas Cortadas, 789, Campo Grande</b>
             </p>
-            <p>Tel: <span class="bold numberPhone">21 5555-55555</span></p>
+            <p>
+              Tel:
+              <span class="bold numberPhone">21 5555-55555</span>
+            </p>
           </div>
         </div>
 
@@ -120,7 +123,7 @@
 </template>
 
 <script setup lang="ts">
-import CardService from "@/components/CardService.vue";
+import CardService from "@/components/CardService.vue"
 </script>
 
 <style scoped>
