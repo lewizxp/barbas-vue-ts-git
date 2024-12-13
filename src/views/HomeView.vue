@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div id="navbar-component"></div>
-
     <header>
-      <!-- <div id="navbar-component"></div> -->
       <div class="navbox">
         <div class="header-content container">
           <div class="header-title">
