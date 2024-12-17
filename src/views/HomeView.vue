@@ -1,9 +1,6 @@
 <template>
   <div>
-    <div id="navbar-component"></div>
-
     <header>
-      <!-- <div id="navbar-component"></div> -->
       <div class="navbox">
         <div class="header-content container">
           <div class="header-title">
@@ -23,7 +20,9 @@
     </header>
 
     <section id="services">
-      <div class="card-container container" id="card-component"></div>
+      <div class="container">
+        <CardService />
+      </div>
     </section>
 
     <section class="bg-black container" id="about">
@@ -59,7 +58,10 @@
             <p>
               <b>Rua Barbas Cortadas, 789, Campo Grande</b>
             </p>
-            <p>Tel: <span class="bold numberPhone">21 5555-55555</span></p>
+            <p>
+              Tel:
+              <span class="bold numberPhone">21 5555-55555</span>
+            </p>
           </div>
         </div>
 
@@ -117,7 +119,9 @@
   </div>
 </template>
 
-<script lang="ts"></script>
+<script setup lang="ts">
+import CardService from "@/components/CardService.vue"
+</script>
 
 <style scoped>
 @import "@/assets/css/home.css";
