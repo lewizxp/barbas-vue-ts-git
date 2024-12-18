@@ -22,21 +22,21 @@
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav me-auto">
           <li class="nav-item">
-            <a class="nav-link" href="/">Inicio</a>
+            <RouterLink class="nav-link" to="/">Inicio</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#services">Serviços</a>
+            <RouterLink class="nav-link" to="/#services">Serviços</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#about">Sobre Nós</a>
+            <RouterLink class="nav-link" to="#about">Sobre Nós</RouterLink>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="/#contact">Contato</a>
+            <RouterLink class="nav-link" to="#contact">Contato</RouterLink>
           </li>
         </ul>
         <ul class="navbar-nav">
           <li class="nav-item">
-            <a class="nav-link" href="login.html">Entrar</a>
+            <RouterLink class="nav-link" to="/login">Entrar</RouterLink>
           </li>
         </ul>
       </div>

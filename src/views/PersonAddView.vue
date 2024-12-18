@@ -16,7 +16,7 @@
           aria-describedby="nameHelp"
           name="nome"
           required
-          v-model="nome"
+          v-model="person.name"
         />
         <div id="nameHelp" class="form-text"></div>
       </div>
@@ -30,6 +30,7 @@
           aria-describedby="telHelp"
           name="telefone"
           required
+          v-model="person.telephone"
         />
         <div id="telHelp" class="form-text"></div>
       </div>
@@ -56,6 +57,7 @@
           id="passwordInput"
           aria-describedby="passwordHelp"
           name="password"
+          v-model="person.password"
         />
         <div id="passwordHelp" class="form-text"></div>
       </div>
@@ -70,8 +72,13 @@
           id="confPasswordInput"
           aria-describedby="confPasswordHelp"
           name="confPassword"
+          v-model="confPass"
         />
-        <div id="confPasswordHelp" class="form-text"></div>
+        <div id="confPasswordHelp" class="form-text">
+          <span v-if="person.password !== confPass" class="text-danger">
+            Senha invalidas
+          </span>
+        </div>
       </div>
 
       <div class="mb-3">
@@ -96,11 +103,10 @@
 
 <script setup lang="ts">
 import { ref } from "vue"
-import { Person } from "@/core/domain/Person.js"
+import { Person } from "@/core/domain/Person"
 
-const nome = ref("")
-const email = ref("")
-const person = ref(new Person())
+const confPass = ref<string>("")
+const person = ref<Person>(new Person())
 </script>
 
 <style scoped>
