@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group-inline">
-        <input type="checkbox" name="remenber" id="rem" />
+        <input type="checkbox" name="remember" id="rem" />
         <label for="rem">Lembre-me</label>
       </div>
 
