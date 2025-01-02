@@ -94,7 +94,7 @@
                 <option disabled selected>Assunto</option>
                 <option value="contato">Contato</option>
                 <option value="reclame">Reclamação</option>
-                <option value="sugent">Sugestão</option>
+                <option value="suggestion">Sugestão</option>
               </select>
             </div>
 

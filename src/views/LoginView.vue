@@ -23,7 +23,7 @@
       </div>
 
       <div class="form-group-inline">
-        <input type="checkbox" name="remenber" id="rem" />
+        <input type="checkbox" name="remember" id="rem" />
         <label for="rem">Lembre-me</label>
       </div>
 
@@ -32,8 +32,10 @@
       </div>
 
       <div>
-        <p>Novo aqui? <a href="person-add.html">cadastre-se</a></p>
-        <p><a href="person-recovery.html">esqueceu a senha?</a></p>
+        <p>Novo aqui? <RouterLink to="/person-add">cadastre-se</RouterLink></p>
+        <p>
+          <router-link to="/person-recovery">esqueceu a senha?</router-link>
+        </p>
       </div>
     </form>
   </section>
