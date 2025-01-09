@@ -1,11 +1,12 @@
-import { setPerson } from "./../infra/person.repository.js";
+import { Person } from "../domain/Person";
+import { addPerson } from "../infra/person.repository";
 
 export const personService = {
     add,
 };
 
-function add(person) {
-    setPerson(person)
+function add(person: Person) {
+    addPerson(person)
         .then(res => {
             console.log("Adicionado: ", res);
             alert("Adicionado com sucesso!");
