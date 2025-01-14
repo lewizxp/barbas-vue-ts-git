@@ -17,8 +17,15 @@
                     name="nome"
                     required
                     v-model="person.name"
+                    @input="
+                        () => {
+                            isValidate = isValue(person.name);
+                        }
+                    "
                 />
-                <div id="nameHelp" class="form-text"></div>
+                <div id="nameHelp" class="form-text">
+                    <span v-if="!isValidate"> Nome invalido</span>
+                </div>
             </div>
 
             <div class="mb-3">
@@ -110,6 +117,9 @@
 import { ref } from "vue";
 import { Person } from "@/core/domain/Person";
 import { personService } from "@/core/service/person.service";
+import { isValue } from "@/core/helpers/validator";
+
+const isValidate = ref(true);
 
 const confPass = ref<string>("");
 const person = ref<Person>(new Person());
