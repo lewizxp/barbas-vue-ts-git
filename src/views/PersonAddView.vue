@@ -7,7 +7,15 @@
             enctype="multipart/form-data"
         >
             <h1 class="text-center">Faça seu cadastro</h1>
-            <div class="mb-3">
+            {{ person }}
+            <InputValue
+                v-model="person.name"
+                name="Nome"
+                message="Nome invalido no campo"
+                :required="true"
+            ></InputValue>
+
+            <!-- <div class="mb-3">
                 <label for="nameInput" class="form-label">Nome</label>
                 <input
                     type="text"
@@ -26,7 +34,7 @@
                 <div id="nameHelp" class="form-text">
                     <span v-if="!isValidate"> Nome invalido</span>
                 </div>
-            </div>
+            </div> -->
 
             <div class="mb-3">
                 <label for="telInput" class="form-label">Telefone</label>
@@ -118,6 +126,7 @@ import { ref } from "vue";
 import { Person } from "@/core/domain/Person";
 import { personService } from "@/core/service/person.service";
 import { isValue } from "@/core/helpers/validator";
+import InputValue from "@/components/InputValue.vue";
 
 const isValidate = ref(true);
 
