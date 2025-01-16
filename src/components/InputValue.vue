@@ -1,72 +1,130 @@
+'
 <template>
-    <div class="mb-3">
-        <label :for="`${props.name}Input`" class="form-label">
-            {{ props.name }}
-        </label>
-        <input
-            v-model="value"
-            type="text"
-            class="form-control"
-            :id="`${props.name}Input`"
-            :aria-describedby="`${props.name}Help`"
-            :required="props.required"
-            @blur="
-                () => {
-                    isValidate = isValue(value) || !props.required;
-                }
-            "
-        />
-        <div
-            :id="`${props.name}Help`"
-            class="form-text"
-            :class="!isValidate ? '' : 'notMessage'"
-        >
-            <span v-if="!isValidate">{{ props.message }}</span>
+    <div>
+        <div class="mb-3">
+            <label :for="`${props.label}Input`" class="form-label">
+                {{ label }}
+            </label>
+            <input
+                v-bind="$attrs"
+                v-model="value"
+                class="form-control"
+                :id="`${props.label}Input`"
+                :type="props.type"
+                :placeholder="props.help"
+                :required="props.required"
+                @blur="validateField(value)"
+                @input="validateField(value)"
+            />
+            <div class="form-text" :class="!isValid ? '' : 'notMessage'">
+                <span v-if="!isValid"> {{ props.message }}</span>
+            </div>
         </div>
     </div>
 </template>
 
 <script setup lang="ts">
+import { maskPhone } from "@/core/helpers/mask";
+import {
+    isEmail,
+    isPassword,
+    isPhone,
+    isValue,
+} from "@/core/helpers/validator";
 import { computed, ref, defineEmits, defineProps } from "vue";
 
-import { isValue } from "@/core/helpers/validator";
-
 const props = defineProps({
-    modelValue: {
-        type: [String, Number],
+    type: {
+        type: String,
+        default: "text",
+        validator(value: string) {
+            return ["text", "password", "email", "tel"].includes(value);
+        },
+    },
+    label: {
+        type: String,
         default: undefined,
     },
-    message: String,
-    name: String,
+    help: {
+        type: String,
+        default: undefined,
+    },
+    message: {
+        type: String,
+        default: undefined,
+    },
     required: {
         type: Boolean,
         default: false,
     },
+    validation: {
+        type: Boolean,
+        default: undefined,
+    },
 
+    modelValue: {
+        type: String,
+        default: undefined,
+        required: true,
+    },
 });
 
-const emit = defineEmits(["update:modelValue"]);
+const isValid = ref(true);
 
-const isValidate = ref(true);
+const emit = defineEmits(["update:modelValue"]);
 
 const value = computed({
     get() {
         return props.modelValue;
     },
     set(value) {
+        value = applyMask(value);
         emit("update:modelValue", value);
     },
 });
+
+function validateField(value?: string) {
+    if (typeof props.validation == "boolean") {
+        isValid.value = props.validation || !props.required;
+        return;
+    }
+
+    switch (props.type) {
+        case "email":
+            isValid.value = isEmail(value) || !props.required;
+            break;
+        case "password":
+            isValid.value = isPassword(value) || !props.required;
+            break;
+        case "tel":
+            isValid.value = isPhone(value) || !props.required;
+            break;
+
+        default:
+            isValid.value = isValue(value) || !props.required;
+    }
+}
+
+function applyMask(value?: string) {
+    switch (props.type) {
+        case "tel":
+            return maskPhone(value ?? "");
+
+        default:
+            return value;
+    }
+}
 </script>
 
 <style scoped>
 .form-text {
-    font-size: 12px;
+    font-size: 0.8rem;
     padding: 0;
     text-align: right;
     color: red;
 }
 .form-text.notMessage {
-    padding: 10px 0;
+    padding: 0.6rem 0;
 }
 </style>
+'
