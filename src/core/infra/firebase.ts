@@ -17,9 +17,10 @@ const firebaseConfig = {
     measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT,
 };
 
-const modo = process.env.NODE_ENV;
-console.info("MODO:", modo);
-//console.info("Config Firebase ", firebaseConfig);
+const modoENV = process.env.NODE_ENV;
+const modoAPP = process.env.VUE_APP_MODE_APP;
+console.info("MODO:", modoENV, `(${modoAPP})`);
+console.info("Config Firebase ", firebaseConfig);
 
 // Initialize Firebase ---------------------------
 export const app = initializeApp(firebaseConfig);
