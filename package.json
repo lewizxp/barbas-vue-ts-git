@@ -6,7 +6,8 @@
         "serve": "vue-cli-service serve",
         "build": "vue-cli-service build",
         "test:unit": "vue-cli-service test:unit",
-        "lint": "vue-cli-service lint"
+        "lint": "vue-cli-service lint",
+        "deploy": "push-dir --dir=dist --branch=gh-pages --cleanup"
     },
     "dependencies": {
         "bootstrap": "^5.3.3",
@@ -35,6 +36,7 @@
         "eslint-plugin-vue": "^8.0.3",
         "jest": "^27.0.5",
         "prettier": "^2.4.1",
+        "push-dir": "^0.4.1",
         "ts-jest": "^27.0.4",
         "typescript": "~4.5.5"
     }

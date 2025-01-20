@@ -7,15 +7,20 @@ import { getAnalytics } from "firebase/analytics";
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-export const firebaseConfig = {
-    apiKey: "AIzaSyCwZBJduSZhvzKAl-b63uo3pi1YIkk3Bc0",
-    authDomain: "barbas-c86ed.firebaseapp.com",
-    projectId: "barbas-c86ed",
-    storageBucket: "barbas-c86ed.firebasestorage.app",
-    messagingSenderId: "800838594148",
-    appId: "1:800838594148:web:341626557847e3173c7971",
-    measurementId: "G-7BN122WWNX",
+const firebaseConfig = {
+    apiKey: process.env.VUE_APP_FIREBASE_APP_KEY,
+    authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.VUE_APP_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.VUE_APP_FIREBASE_STORAGE,
+    messagingSenderId: process.env.VUE_APP_FIREBASE_MESSAGING,
+    appId: process.env.VUE_APP_FIREBASE_APP_ID,
+    measurementId: process.env.VUE_APP_FIREBASE_MEASUREMENT,
 };
+
+const modoENV = process.env.NODE_ENV;
+const modoAPP = process.env.VUE_APP_MODE_APP;
+console.info("MODO:", modoENV, `(${modoAPP})`);
+console.info("Config Firebase ", firebaseConfig);
 
 // Initialize Firebase ---------------------------
 export const app = initializeApp(firebaseConfig);
