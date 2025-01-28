@@ -33,6 +33,9 @@
                 <button @click="sendLoginEmail">Entrar</button>
             </div>
 
+            <button class="btn btn-primary btn-lg " >Botão Grande</button>
+              
+         
             <div>
                 <p>
                     Novo aqui?
@@ -44,6 +47,7 @@
                     >
                 </p>
             </div>
+            
         </form>
     </section>
 </template>
