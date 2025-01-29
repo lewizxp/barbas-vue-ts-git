@@ -30,40 +30,71 @@
             </div>
 
             <div class="form-group">
-                <button @click="sendLoginEmail">Entrar</button>
+                <button type="button" @click="sendLoginEmail">Entrar</button>
             </div>
 
-            <button class="btn btn-primary btn-lg " >Botão Grande</button>
-              
-         
             <div>
+
+                <div class="form-group">
+                <button type="button" @click="sendLoginGoogle()">Google</button>
+            </div>  
                 <p>
                     Novo aqui?
                     <RouterLink to="/person-add">cadastre-se</RouterLink>
                 </p>
                 <p>
-                    <router-link to="/person-recovery"
-                        >esqueceu a senha?</router-link
-                    >
+                    <router-link to="/person-recovery">
+                        esqueceu a senha?
+                    </router-link>
                 </p>
             </div>
-            
+
         </form>
     </section>
+    <div v-if="errorLogin" class="alert alert-danger" role="alert">
+        {{ errorLogin }}
+    </div>
 </template>
 
 <script setup lang="ts">
 import { authService } from "@/core/service/auth.service";
+import router from "@/router";
 import { ref } from "vue";
 
 const email = ref("");
 const senha = ref("");
+const errorLogin = ref();
 
 function sendLoginEmail() {
-    authService.loginEmail(email.value, senha.value);
+    authService
+        .loginEmail(email.value, senha.value)
+        .then(res => {
+            router.push("/");
+        })
+        .catch(error => {
+            errorLogin.value = error;
+        });
+}
+
+function sendLoginGoogle() {
+    authService
+        .loginGoogle()
+        .then(res => {
+            router.push("/");
+        })
+        .catch(error => {
+            errorLogin.value = error;
+        });
 }
 </script>
 
 <style scoped>
 @import "@/assets/css/login.css";
+.alert.alert-danger {
+    position: absolute;
+    top: 100px;
+    left: 50%;
+    width: 50%;
+    transform: translateX(-50%);
+}
 </style>
