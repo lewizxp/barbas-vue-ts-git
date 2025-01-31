@@ -64,7 +64,7 @@ const email = ref("");
 const senha = ref("");
 const errorLogin = ref();
 
-const user = authService.getAuthUser();
+//const user = authService.getAuthUser();
 
 function sendLoginEmail() {
     authService
