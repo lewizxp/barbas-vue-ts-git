@@ -48,7 +48,7 @@ async function loginGoogle() {
 
 function getAuthUser() {
     const user = auth.currentUser;
-    console.log(user);
+    console.log(">>> User: ",user);
     if (!user) return;
     return <Person>{
         email: user?.email,

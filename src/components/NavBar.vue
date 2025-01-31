@@ -1,5 +1,8 @@
 <template>
-    <nav class="navbar navbar-expand-lg fixed-top">
+    <nav
+        class="navbar navbar-expand-lg fixed-top"
+        @mousemove="updateDataAuth()"
+    >
         <div class="container">
             <!-- <a class="navbar-brand" href="#">Navbar</a> -->
             <img
@@ -46,7 +49,7 @@
                     </li>
                 </ul>
 
-                <ul v-if="!person" class="navbar-nav">
+                <ul v-else class="navbar-nav">
                     <li class="nav-item">
                         <RouterLink class="nav-link" to="/login">
                             Entrar
@@ -62,28 +65,34 @@
 import { Person } from "@/core/domain/Person";
 import { authService } from "@/core/service/auth.service";
 import router from "@/router";
-import { onMounted, ref, watch } from "vue";
+import { ref } from "vue";
 
 const person = ref<Person | undefined>();
 
-watch(
-    () => authService.getAuthUser(),
-    personAuth => {
-        console.log(personAuth);
-        person.value = personAuth;
-    }
-);
+let times = 0;
+
+function updateDataAuth() {
+    clearTimeout(times);
+    times = setTimeout(() => {
+        person.value = authService.getAuthUser();
+    }, 500);
+}
 
 function sendLogoff() {
     authService
         .logoff()
         .then(() => {
+            updateDataAuth();
             router.push("/");
         })
         .catch(() => {
             alert("Não foi possível sair!");
         });
 }
+
+router.beforeEach(() => {
+    updateDataAuth();
+});
 </script>
 
 <style scoped>
