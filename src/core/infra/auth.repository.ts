@@ -7,6 +7,7 @@ import {
     signInWithEmailAndPassword,
     signInWithPopup,
     GoogleAuthProvider,
+    signOut,
 } from "firebase/auth";
 
 export const auth = getAuth(app);
@@ -47,4 +48,9 @@ export function getLoginGoogle() {
             // ...
             throw new Error(error);
         });
+}
+
+export function getLogoff(){
+    return signOut(auth) 
+       
 }
