@@ -34,11 +34,23 @@
                         <a class="nav-link" href="/#contact">Contato</a>
                     </li>
                 </ul>
-                <ul class="navbar-nav">
+
+                <ul v-if="person" class="navbar-nav">
                     <li class="nav-item">
-                        <RouterLink class="nav-link" to="/login"
-                            >Entrar</RouterLink
-                        >
+                        <RouterLink class="nav-link" to="/perfil">
+                            {{ person?.name ?? person?.email }}
+                        </RouterLink>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" @click="sendLogoff()"> Sair </a>
+                    </li>
+                </ul>
+
+                <ul v-if="!person" class="navbar-nav">
+                    <li class="nav-item">
+                        <RouterLink class="nav-link" to="/login">
+                            Entrar
+                        </RouterLink>
                     </li>
                 </ul>
             </div>
@@ -46,7 +58,33 @@
     </nav>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import { Person } from "@/core/domain/Person";
+import { authService } from "@/core/service/auth.service";
+import router from "@/router";
+import { onMounted, ref, watch } from "vue";
+
+const person = ref<Person | undefined>();
+
+watch(
+    () => authService.getAuthUser(),
+    personAuth => {
+        console.log(personAuth);
+        person.value = personAuth;
+    }
+);
+
+function sendLogoff() {
+    authService
+        .logoff()
+        .then(() => {
+            router.push("/");
+        })
+        .catch(() => {
+            alert("Não foi possível sair!");
+        });
+}
+</script>
 
 <style scoped>
 .navbar {
