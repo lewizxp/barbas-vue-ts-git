@@ -20,3 +20,9 @@ function add(person: Person) {
             alert("Error ao adicionar o usuário");
         });
 }
+
+async function get(id: string){
+    if(!id)throw new Error("Dados incompletos");
+    return await getPerson(id);
+    
+}

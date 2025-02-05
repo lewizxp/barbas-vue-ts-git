@@ -1,20 +1,25 @@
-import { auth, getLoginGoogle, getLogoff, postLoginEmail } from "@/core/infra/auth.repository";
+import {
+    auth,
+    getLoginGoogle,
+    getLogoff,
+    postLoginEmail,
+} from "@/core/infra/auth.repository";
 import { Person } from "../domain/Person";
+import router from "@/router";
 
 export const authService = {
     loginEmail,
     loginGoogle,
     getAuthUser,
-    Logoff,
-
-
+    logoff,
 };
 
 async function loginEmail(email: string, password: string) {
     return await postLoginEmail(email, password)
         .then(res => {
             const user = res.user;
-            return <Person>{
+            const person = <Person>{
+                id: user.uid,
                 email: user.email,
                 name: user.displayName,
                 photo: user.photoURL,
@@ -31,6 +36,7 @@ async function loginGoogle() {
         .then(res => {
             const user = res;
             return <Person>{
+                id: user.uid,
                 email: user.email,
                 name: user.displayName,
                 photo: user.photoURL,
@@ -42,17 +48,20 @@ async function loginGoogle() {
         });
 }
 
-function getAuthUser(){
-    console.log (auth.currentUser);
+function getAuthUser() {
     const user = auth.currentUser;
-    if(!user) return;
+    console.log(">>> User: ",user);
+    if (!user) return;
     return <Person>{
+        id: user.uid,
         email: user?.email,
         name: user?.displayName,
-        photo:user?.photoURL,
+        photo: user?.photoURL,
     };
 }
-function Logoff(){
-   return getLogoff();
-    
+
+function logoff() {
+    console.log(auth.currentUser);
+
+    return getLogoff();
 }

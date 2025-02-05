@@ -51,3 +51,20 @@ export async function queryPerson() {
 
     return querySnapshot;
 }
+
+
+export async function (idDoc:string){
+    const docRef = doc (db,"person" , idDoc);
+    const docSnap = await getDoc (docRef);
+
+
+if (docSnap.exists()) {
+  console.log("Document data:", docSnap.data());
+} else {
+  // docSnap.data() will be undefined in this case
+  console.log("No such document!");
+
+}
+
+return docSnap;
+}

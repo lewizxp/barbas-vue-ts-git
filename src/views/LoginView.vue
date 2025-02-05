@@ -34,10 +34,6 @@
             </div>
 
             <div>
-
-                <div class="form-group">
-                <button type="button" @click="sendLoginGoogle()">Google</button>
-            </div>  
                 <p>
                     Novo aqui?
                     <RouterLink to="/person-add">cadastre-se</RouterLink>
@@ -49,6 +45,9 @@
                 </p>
             </div>
 
+            <div class="form-group">
+                <button type="button" @click="sendLoginGoogle()">Google</button>
+            </div>
         </form>
     </section>
     <div v-if="errorLogin" class="alert alert-danger" role="alert">
@@ -64,6 +63,8 @@ import { ref } from "vue";
 const email = ref("");
 const senha = ref("");
 const errorLogin = ref();
+
+//const user = authService.getAuthUser();
 
 function sendLoginEmail() {
     authService
