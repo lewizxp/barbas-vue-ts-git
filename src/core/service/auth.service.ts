@@ -19,6 +19,7 @@ async function loginEmail(email: string, password: string) {
         .then(res => {
             const user = res.user;
             const person = <Person>{
+                id: user.uid,
                 email: user.email,
                 name: user.displayName,
                 photo: user.photoURL,
@@ -35,6 +36,7 @@ async function loginGoogle() {
         .then(res => {
             const user = res;
             return <Person>{
+                id: user.uid,
                 email: user.email,
                 name: user.displayName,
                 photo: user.photoURL,
@@ -48,9 +50,10 @@ async function loginGoogle() {
 
 function getAuthUser() {
     const user = auth.currentUser;
-    console.log(">>> User: ",user);
+    console.log(">>> User: ", user);
     if (!user) return;
     return <Person>{
+        id: user.uid,
         email: user?.email,
         name: user?.displayName,
         photo: user?.photoURL,
