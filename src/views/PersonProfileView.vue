@@ -1,6 +1,19 @@
 <template>
-    <div>
+    <div class="container bg-body h-100">
         {{ person }}
+        <div>
+            <img :src="person?.photo" alt="" />
+        </div>
+        <div>
+            <p>
+                <b>Nome: </b>
+                <br />{{ person?.name }}
+            </p>
+            <p>
+                <b>Email: </b>
+                <br />{{ person?.email }}
+            </p>
+        </div>
     </div>
 </template>
 
@@ -14,8 +27,8 @@ const person = ref<Person | undefined>();
 onMounted(() => {
     const idRouter = router.currentRoute.value.params.id.toString();
     personService.get(idRouter).then(res => {
-        if (res.exists()) {
-            person.value = { ...res.data } as Person;
+        if (res) {
+            person.value = res;
         }
     });
 });
