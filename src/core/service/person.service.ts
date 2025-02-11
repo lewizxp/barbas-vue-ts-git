@@ -13,7 +13,7 @@ function add(person: Person) {
 
     addPerson(person)
         .then(res => {
-            console.log("Adicionado: ", res);
+            ///console.log(">>> Adicionado: ", res);
             alert("Adicionado com sucesso!");
         })
         .catch(error => {
