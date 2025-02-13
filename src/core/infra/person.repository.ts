@@ -61,7 +61,7 @@ export async function getPerson(idDoc: string) {
 
     if (docSnap.exists()) {
         //console.log("Document data:", docSnap.data());
-        person = { ...docSnap.data() } as Person;
+        person = { ...docSnap.data(), id: docSnap.id } as Person;
     }
 
     //else {
