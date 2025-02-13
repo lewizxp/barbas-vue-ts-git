@@ -40,7 +40,10 @@
 
                 <ul v-if="person" class="navbar-nav">
                     <li class="nav-item">
-                        <RouterLink class="nav-link":to="`/profile${person?.id}`">        
+                        <RouterLink
+                            class="nav-link"
+                            :to="`/profile/${person?.id}`"
+                        >
                             {{ person?.name ?? person?.email }}
                         </RouterLink>
                     </li>

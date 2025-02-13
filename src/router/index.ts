@@ -1,7 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
-import HomeView from "../views/HomeView.vue";
-import PersonAdd from "../views/PersonAddView.vue";
-import PersonProfile from "../views/PersonProfileView.vue"; 
+import HomeView from "@/views/HomeView.vue";
+import PersonAdd from "@/views/PersonAddView.vue";
+import PersonProfile from "@/views/PersonProfileView.vue";
 
 const routes: Array<RouteRecordRaw> = [
     {
@@ -20,6 +20,11 @@ const routes: Array<RouteRecordRaw> = [
         component: PersonAdd,
     },
     {
+        path: "/profile/:id",
+        name: "Perfil",
+        component: PersonProfile,
+    },
+    {
         path: "/about",
         name: "about",
         // route level code-splitting
@@ -28,20 +33,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () =>
             import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
     },
-
-
-    {
-        path: "/profile/:id",
-        name: "perfil",
-        component: PersonProfile,
-    },
 ];
-
 
 const router = createRouter({
     history: createWebHistory(process.env.BASE_URL),
     routes,
 });
-
 
 export default router;

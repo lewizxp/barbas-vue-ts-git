@@ -1,5 +1,5 @@
 export class Person {
-    id?:string;
+    id?: string;
     name: string;
     email: string;
     telephone: string;
@@ -23,5 +23,3 @@ export class Person {
         this.typePerson = "fisica";
     }
 }
-
-//export default new Person

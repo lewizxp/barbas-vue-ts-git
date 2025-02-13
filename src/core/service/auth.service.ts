@@ -50,7 +50,7 @@ async function loginGoogle() {
 
 function getAuthUser() {
     const user = auth.currentUser;
-    console.log(">>> User: ",user);
+    //console.log(">>> User: ", user);
     if (!user) return;
     return <Person>{
         id: user.uid,
@@ -61,7 +61,6 @@ function getAuthUser() {
 }
 
 function logoff() {
-    console.log(auth.currentUser);
-
+    //console.log('>>> LogOff', auth.currentUser);
     return getLogoff();
 }
