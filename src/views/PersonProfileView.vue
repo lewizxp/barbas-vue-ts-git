@@ -14,6 +14,15 @@
                 <br />{{ person?.email }}
             </p>
         </div>
+
+        <div>
+            <button
+                type="button"
+                @click="$router.push(`/person-edit/${person.id}`)"
+            >
+                Editar
+            </button>
+        </div>
     </div>
 </template>
 
@@ -32,6 +41,10 @@ onMounted(() => {
         }
     });
 });
+
+function openFormEdit() {
+  router.push(`/person-edit/${person.value.id}`)
+}
 </script>
 
 <style scoped></style>
