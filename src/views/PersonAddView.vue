@@ -59,13 +59,28 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, onMounted} from "vue";
 import { Person } from "@/core/domain/Person";
 import { personService } from "@/core/service/person.service";
 import InputValue from "@/components/InputValue.vue";
+import router from "@/router";
 
 const confPass = ref<string>("");
 const person = ref<Person>(new Person());
+
+
+onMounted(()=>{
+
+const idRouter = router.currentRoute.value.params.id.toString();
+   personService.get(idRouter).then(res=> {
+     if (res){
+        person.value = res;
+     }
+
+
+
+   })
+})
 
 function add() {
     personService.add(person.value);

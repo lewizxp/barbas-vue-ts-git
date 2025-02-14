@@ -19,6 +19,13 @@ const routes: Array<RouteRecordRaw> = [
         name: "Adicionar Usuário",
         component: PersonAdd,
     },
+
+    {
+        path: "/person-edit/:id",
+        name: "Editar Usuário",
+        component: PersonAdd,
+    },
+
     {
         path: "/profile/:id",
         name: "Perfil",

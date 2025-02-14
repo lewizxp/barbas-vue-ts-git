@@ -61,14 +61,11 @@ export async function getPerson(idDoc: string) {
 
     if (docSnap.exists()) {
         //console.log("Document data:", docSnap.data());
-        person = { ...docSnap.data() } as Person;
+        person = { ...docSnap.data(), id: docSnap.id } as Person;
     }
 
-    //else {
-    // docSnap.data() will be undefined in this case
-    //console.log("No such document!");
-    //}
-
+   
     console.log(">>> getPerson ", person);
     return person;
 }
+

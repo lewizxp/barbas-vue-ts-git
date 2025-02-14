@@ -14,6 +14,14 @@
                 <br />{{ person?.email }}
             </p>
         </div>
+
+        <div>
+        <button type="button" @click="$router.push(`/person-edit/${person.id}`)
+        ">
+              Editar
+        </button>
+
+        </div>
     </div>
 </template>
 
